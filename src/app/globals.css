@@ -38,3 +38,52 @@ body {
   color: #005766;
   background: transparent;
 }
+
+.mainFilledBtn {
+  width: 414px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #00BF63;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: white;
+  font-weight: 700;
+}
+
+.swipperOutlineBtn {
+  width: 378px;
+  height: 40px;
+  border: 1px solid #05391C;
+  border-radius: 5px;
+  color: #05391C;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.cardFilledBtn {
+  width: 277px;
+  height: 40px;
+  background-color: #005766;
+  border-radius: 5px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.footerOutlineBtn {
+  width: 414px;
+  height: 40px;
+  border: none;
+  background-color: white;
+  border-radius: 5px;
+  color: #002166;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.placeholder::placeholder {
+  color: white;
+}

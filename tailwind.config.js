@@ -15,6 +15,9 @@ module.exports = {
         clr3: "#002166",
         clr4: "#000000B2",
         bg1: "#00BF63",
+        // main
+        clr5: "#00BF63",
+        clr6: "#40818C",
       },
     },
   },
