@@ -6,8 +6,8 @@ const Footer = () => {
     <section className="">
       <div className="top h-96 bg-bg1 relative">
         <div className="flex justify-between items-center w-10/12 m-auto ">
-          <div className="left w-1/2 mt-16">
-            <p className="text-[32px] font-semibold leading-7 text-white mb-4">Start Automating Your Calls <br />For Free Now</p>
+          <div className="left w-full lg:w-1/2 mt-16 flex items-center lg:items-start justify-center flex-col">
+            <p className="text-[32px] font-semibold leading-7 w-[414px] text-white mb-4">Start Automating Your Calls For Free Now</p>
 
             <form action="">
               <input type="email" name="" id="" placeholder="Email" className="w-[414px] h-10 px-3 rounded-md bg-transparent border-2 outline-none border-white mb-2 placeholder" />
@@ -30,21 +30,18 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-
-          {/* <div className="right bg-red-400 relative w-1/2 flex justify-center"> */}
-          {/* </div> */}
         </div>
         <Image
           src="/footerRobot.svg"
           alt="Footer_Logo"
           width={401}
           height={410}
-          className="absolute -top-20 right-32"
+          className="absolute -top-20 right-28  hidden lg:block"
         />
       </div>
 
       <div className="bottom bg-clr4 h-10 flex items-center justify-center">
-        <p className="text-white">PTCL Training Center, IT Park, Peshawar Pakistan | info@techbot.com | Terms of Service | Cookie Policy | © Copyright 2022 techbot, Inc.</p>
+        <p className="text-white text-xs text-center lg:text-sm">PTCL Training Center, IT Park, Peshawar Pakistan | info@techbot.com | Terms of Service | Cookie Policy | © Copyright 2022 techbot, Inc.</p>
       </div>
     </section>
   )
