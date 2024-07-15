@@ -3,7 +3,7 @@ import Link from "next/link"
 
 const Nav = () => {
   return (
-    <section className='w-full absolute top-0 right-0 left-0 z-20'>
+    <section className='w-full absolute top-0 z-20'>
       <div className="w-10/12 m-auto flex items-center justify-between h-24">
         <div className="">
           <Image
