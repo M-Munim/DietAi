@@ -86,7 +86,7 @@ const Nav = () => {
         </div>
       </div>
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-20 right-10 rounded-lg w-3/12 bg-white shadow-md z-50">
+        <div className="lg:hidden absolute top-20 right-10 rounded-lg w-5/12 md:w-3/12 bg-white shadow-md z-50">
           <div className="flex flex-col items-center py-4">
             <Link href="" className="my-2">Product</Link>
             <Link href="" className="my-2">Pricing</Link>
