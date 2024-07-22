@@ -21,6 +21,7 @@ body {
 .navOutlineBtn:hover {
   background-color: #005766;
   color: #fff;
+  transition: 0.3s;
 }
 
 .navFilledBtn {
@@ -37,6 +38,7 @@ body {
   border: 1px solid #005766;
   color: #005766;
   background: transparent;
+  transition: 0.3s;
 }
 
 .mainFilledBtn {
@@ -86,4 +88,36 @@ body {
 
 .placeholder::placeholder {
   color: white;
+}
+
+.quizFilledBtn {
+  width: 314px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #00BF63;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: white;
+  font-weight: 700;
+}
+
+.quizOutlineBtn {
+  width: 149px;
+  height: 40px;
+  border: 1px solid #00BF63;
+  border-radius: 5px;
+  color: #00BF63;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.quizFilledBtn2 {
+  width: 154px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #00BF63;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: white;
+  font-weight: 700;
 }
