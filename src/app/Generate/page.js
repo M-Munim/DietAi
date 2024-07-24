@@ -1,27 +1,3 @@
-// import React from 'react'
-
-// const page = () => {
-//   return (
-//     <section className='w-full flex items-center justify-center my-40'>
-//       <div className="bg-red-400 w-[980px] h-[306px] rounded-[51px] shadow-lg ">
-//         <div className="mt-6 ml-6 ">
-//           <h1 className="">Genrate diet plan</h1>
-//           <p className="">Answer the following questions to genrate a diet plan</p>
-//         </div>
-//         <div className="flex items-center justify-center">
-
-//           <div id="personalized-diet-plan" className="w-1/2 bg-green-200">
-//             <label htmlFor="name" className="block">Name:</label>
-//             <input type="text" id="name" placeholder="Enter your name" className="outline-none p-2 w-full" />
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   )
-// }
-
-// export default page
-
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -30,6 +6,8 @@ import { quiz } from '../data';
 const Questionnaire = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [isCurrentQuestionAnswered, setIsCurrentQuestionAnswered] = useState(false);
+  const [notification, setNotification] = useState('');
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -39,9 +17,33 @@ const Questionnaire = () => {
     }));
   };
 
+  useEffect(() => {
+    const currentQuestionId = `question-${quiz.questions[currentQuestionIndex].id}`;
+    setIsCurrentQuestionAnswered(answers[currentQuestionId] !== undefined && answers[currentQuestionId] !== '');
+    setNotification(''); // Clear the notification when the user changes the input
+  }, [answers, currentQuestionIndex]);
+
+  useEffect(() => {
+    // Clear the radio selection when the current question changes
+    const inputs = document.querySelectorAll('input[type="radio"]');
+    inputs.forEach(input => {
+      input.checked = false;
+    });
+  }, [currentQuestionIndex]);
+
   const handleNextQuestion = () => {
-    if (currentQuestionIndex < quiz.questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    if (isCurrentQuestionAnswered) {
+      if (currentQuestionIndex < quiz.questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      }
+    } else {
+      setNotification('Please answer the question first.');
+    }
+  };
+
+  const handlePreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
 
@@ -57,42 +59,61 @@ const Questionnaire = () => {
   return (
     <div className='w-full flex items-center justify-center my-40'>
       {!isLastQuestion ? (
-        <div className='bg-red-300 w-9/12 h-[416px] rounded-[51px] shadow-lg'>
-          <div className="mt-6 pl-6 w-9/12 items-start justify-center flex flex-col" >
-            <h1 className="font-bold text-2xl">Genrate diet plan</h1>
-            <p className="font-light text-sm text-gray-600">Answer the following questions to genrate a diet plan</p>
+        <div className='w-11/12 md:w-8/12 h-[436px] rounded-[51px] shadow-2xl shadow-green-400'>
+          <div className="mt-6 pl-6 w-11/12 md:w-9/12 items-start justify-center flex flex-col bg-yellow-200">
+            <h1 className="font-bold text-2xl">Generate diet plan</h1>
+            <p className="font-light text-sm text-gray-600">Answer the following questions to generate a diet plan</p>
           </div>
-          <div className=' w-8/12 m-auto h-2/3 items-start justify-center flex flex-col'>
+
+          <div className='w-11/12 md:w-8/12 m-auto h-2/3 items-start justify-center flex flex-col bg-green-200'>
             <div className="w-full">
-              <p className='font-bold text-xl mb-2'>{currentQuestion.question}</p>
+              <p className='font-bold text-lg md:text-xl mb-2 leading-6'>Q: {currentQuestion.id} {currentQuestion.question}</p>
               {currentQuestion.type === 'text' ? (
                 <input
                   type="text"
                   name={`question-${currentQuestion.id}`}
                   onChange={handleInputChange}
-                  className="w-full ml-10 h-10 outline-none border-none shadow-lg p-3 rounded-md"
+                  className="w-10/12 ml-10 h-10 outline-none border-none shadow-lg p-3 rounded-md"
+                  placeholder={currentQuestion.placeholder}
                   required
                 />
               ) : (
                 currentQuestion.options.map((option, index) => (
-                  <div key={index}>
+                  <div key={index} className='ml-3'>
                     <input
                       type="radio"
                       id={`option-${index}`}
                       name={`question-${currentQuestion.id}`}
                       value={option}
                       onChange={handleInputChange}
+                      className='mr-1'
                     />
                     <label htmlFor={`option-${index}`}>{option}</label>
                   </div>
                 ))
               )}
             </div>
+            {notification && <p className="text-red-500 text-center mt-2 w-full text-sm">{notification}</p>}
           </div>
-          <button onClick={handleNextQuestion} className='quizFilledBtn2 m-auto block'>Next</button>
+          <div className='flex justify-center items-center gap-3 mt-4'>
+            {currentQuestionIndex > 0 && (
+              <button
+                onClick={handlePreviousQuestion}
+                className='quizFilledBtnRed'
+              >
+                Back
+              </button>
+            )}
+            <button
+              onClick={handleNextQuestion}
+              className='quizFilledBtn2'
+            >
+              Next
+            </button>
+          </div>
         </div>
       ) : (
-        <div>
+        <div className='m-auto w-11/12'>
           <h2>Your Answers:</h2>
           <ul>
             {Object.entries(answers).map(([key, value]) => {
