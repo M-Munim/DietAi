@@ -1,65 +1,93 @@
+// 'use client';
+
+// import { useState } from 'react';
+// import Image from 'next/image';
+// import Link from 'next/link';
+
+// const Nav = () => {
+//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+//   const toggleMobileMenu = () => {
+//     setIsMobileMenuOpen(!isMobileMenuOpen);
+//   };
+
+//   return (
+//     <section className='w-full fixed top-0 z-50 bg-transparent'>
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <section className='w-full absolute top-0 z-50'>
-      <div className="w-10/12 m-auto flex items-center justify-between h-24">
-        <div className="">
+    <section
+      className={`w-full fixed top-0 z-50 transition-all duration-300 ease-in-out ${scrolling ? 'bg-white bg-opacity-80 backdrop-blur-md shadow-md' : 'bg-transparent'
+        }`}
+    >
+      <div className="w-10/12 mx-auto flex items-center justify-between h-24">
+        <div className="w-4/12">
           <Link href='/'>
-            <Image
-              src="/Logo.svg"
-              alt="Logo"
-              width={155}
-              height={38}
-            />
+            <Image src="/Logo.svg" alt="Logo" width={155} height={38} className='inline'/>
           </Link>
         </div>
-        <div className="hidden lg:flex">
+
+        <div className="hidden lg:flex flex-grow justify-between w-8/12">
           <div className="links text-clr1 flex justify-center items-center gap-9">
-            <Link href="">Product</Link>
-            <Link href="">Pricing</Link>
-            <Link href="">Partners</Link>
-            <Link href="">Company</Link>
+            <Link href="#">Product</Link>
+            <Link href="#">Pricing</Link>
+            <Link href="#">Partners</Link>
+            <Link href="#">Company</Link>
           </div>
-        </div>
-        <div className="hidden lg:flex">
-          <div className="buttons flex justify-center items-center gap-2">
-            <button type="button" className="navOutlineBtn">get demo</button>
+          <div className="buttons flex items-center gap-2 ml-4">
+            <button type="button" className="navOutlineBtn">Get Demo</button>
             <button type="button" className="navFilledBtn">Login</button>
           </div>
         </div>
-        <div className="lg:hidden flex items-center">
-          <button onClick={toggleMobileMenu} className="mobile-menu-button">
-            {isMobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            )}
-          </button>
-        </div>
+
+        <button onClick={toggleMobileMenu} className="lg:hidden flex items-center justify-end">
+          {isMobileMenuOpen ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          )}
+        </button>
       </div>
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-20 right-10 rounded-lg w-5/12 md:w-3/12 bg-white shadow-md z-50">
+        <div className="lg:hidden fixed top-20 right-5 bg-white shadow-md w-5/12 md:w-3/12 z-50">
           <div className="flex flex-col items-center py-4">
-            <Link href="" className="my-2">Product</Link>
-            <Link href="" className="my-2">Pricing</Link>
-            <Link href="" className="my-2">Partners</Link>
-            <Link href="" className="my-2">Company</Link>
-            <button type="button" className="navOutlineBtn mt-4">get demo</button>
+            <Link href="#" className="my-2">Product</Link>
+            <Link href="#" className="my-2">Pricing</Link>
+            <Link href="#" className="my-2">Partners</Link>
+            <Link href="#" className="my-2">Company</Link>
+            <button type="button" className="navOutlineBtn mt-4">Get Demo</button>
             <button type="button" className="navFilledBtn mt-2">Login</button>
           </div>
         </div>

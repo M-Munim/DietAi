@@ -10,15 +10,15 @@ const page = () => {
       <div className="w-11/12 h-auto md:h-[666px] rounded-[51px] shadow-lg">
         <div className="flex items-center justify-between flex-col-reverse md:flex-row rounded-[51px]" id="start">
           <div className="left w-full md:w-[58%] flex flex-col justify-center items-start gap-5 p-5 md:p-7 z-20">
-            <div className="logo mb-4">
+            {/* <div className="logo mb-4">
               <Image
-                src="/logo.svg"
+                src="./logo.svg"
                 alt="dietBg"
                 width={190}
                 height={47}
                 className=""
               />
-            </div>
+            </div> */}
 
             <div className="">
               <h1 className="font-bold text-lg md:text-[34px] leading-5 md:leading-9">AI-Powered Nutrition Solutions: <br />
