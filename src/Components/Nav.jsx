@@ -1,40 +1,5 @@
 'use client';
-// import Image from "next/image"
-// import Link from "next/link"
 
-// const Nav = () => {
-
-//   return (
-//     <section className='w-full absolute top-0 z-20'>
-//       <div className="w-10/12 m-auto flex items-center justify-between h-24">
-//         <div className="">
-//           <Image
-//             src="/Logo.svg"
-//             alt="Logo"
-//             width={155}
-//             height={38}
-//           />
-//         </div>
-//         <div className="">
-//           <div className="links text-clr1 flex justify-center items-center gap-9">
-//             <Link href="">Product</Link>
-//             <Link href="">Pricing</Link>
-//             <Link href="">Partners</Link>
-//             <Link href="">Company</Link>
-//           </div>
-//         </div>
-//         <div className="">
-//           <div className="buttons flex justify-center items-center gap-2">
-//             <button type="button" className="navOutlineBtn">get demo</button>
-//             <button type="button" className="navFilledBtn">Login</button>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   )
-// }
-
-// export default Nav
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -50,12 +15,14 @@ const Nav = () => {
     <section className='w-full absolute top-0 z-50'>
       <div className="w-10/12 m-auto flex items-center justify-between h-24">
         <div className="">
-          <Image
-            src="/Logo.svg"
-            alt="Logo"
-            width={155}
-            height={38}
-          />
+          <Link href='/'>
+            <Image
+              src="/Logo.svg"
+              alt="Logo"
+              width={155}
+              height={38}
+            />
+          </Link>
         </div>
         <div className="hidden lg:flex">
           <div className="links text-clr1 flex justify-center items-center gap-9">

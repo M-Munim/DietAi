@@ -50,7 +50,7 @@ const page = () => {
               <button className="quizOutlineBtn">DIET PLANS</button>
             </div>
           </div>
-          <div className="right w-full md:w-[42%] flex items-start justify-end md:relative rounded-[51px] p-0 absolute z-10 opacity-25">
+          <div className="right w-full md:w-[42%] flex items-start justify-end md:relative rounded-[51px] p-0 absolute z-10 md:opacity-100 opacity-25">
             <Image
               src="/dietBg.svg"
               alt="dietBg"
