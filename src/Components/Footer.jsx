@@ -39,13 +39,13 @@ const Footer = () => {
               <Link href="">Casestudies</Link>
             </div>
           </div>
-          <Image
+          {/* <Image
             src="/footerRobot.svg"
             alt="Footer_Logo"
             width={401}
             height={410}
             className="absolute -top-20 right-0 lg:right-28 hidden lg:block"
-          />
+          /> */}
         </div>
       </div>
 
