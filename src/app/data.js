@@ -52,7 +52,7 @@ export const quiz = {
       "id": 9,
       "question": "How many days per week do you engage in regular physical activity, and what type of exercise do you do?",
       "type": "multiple-choice",
-      "options": ["0 days", "1-2 days (please specify)", "3-4 days (please specify)", "5 or more days (please specify)"]
+      "options": ["0 days", "1-2 days", "3-4 days", "5 or more days"]
     },
     {
       "id": 10,
@@ -112,7 +112,7 @@ export const quiz = {
       "id": 19,
       "question": "Are you currently taking any dietary supplements?",
       "type": "multiple-choice",
-      "options": ["Yes (please specify)", "No"]
+      "options": ["Yes", "No"]
     },
     {
       "id": 20,
@@ -124,7 +124,7 @@ export const quiz = {
       "id": 21,
       "question": "Do you have any medical conditions or concerns that I should be aware of when creating your diet plan?",
       "type": "multiple-choice",
-      "options": ["Yes (please specify)", "No"]
+      "options": ["Yes", "No"]
     },
     {
       "id": 22,
@@ -136,18 +136,40 @@ export const quiz = {
       "id": 23,
       "question": "Are there any social or cultural factors that may impact your dietary choices?",
       "type": "multiple-choice",
-      "options": ["Yes (please specify)", "No"]
+      "options": ["Yes", "No"]
     },
     {
       "id": 24,
       "question": "How often do you dine out or eat food prepared outside of your home?",
       "type": "multiple-choice",
       "options": ["Rarely", "Occasionally", "Frequently"]
-    }, {
+    },
+    {
       "id": 25,
-      "question": "Is there anything else you think is important for me to know when creating your personalized diet plan?",
-      "placeholder": 'Select one: Yes, No',
+      "question": "Is there anything else you think is important for me to know when creating your personalized weight loss diet plan?",
+      "placeholder": 'Enter any additional information here',
       "type": "text"
     },
   ]
 };
+
+
+
+
+export const categories = [
+  {
+    id: 1,
+    title: "Diet for weight loss",
+    link: "/Weightloss",
+  },
+  {
+    id: 2,
+    title: "diet for diabetes",
+    link: "/Diabetes",
+  },
+  {
+    id: 3,
+    title: "diet for fertility",
+    link: "/Fertility",
+  },
+];

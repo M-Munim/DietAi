@@ -42,11 +42,12 @@ const page = () => {
             </div>
 
             <div className="flex items-center justify-center flex-col md:flex-row gap-3 w-full">
-              <button className="quizFilledBtn tracking-widest">
-                <Link href="/Generate">
+              <Link href="/Categories">
+                <button className="quizFilledBtn tracking-widest">
+                  {/* <Link href="/Generate"> */}
                   GET PERSONALIZED DIET PLAN
-                </Link>
-              </button>
+                </button>
+              </Link>
               <button className="quizOutlineBtn">DIET PLANS</button>
             </div>
           </div>
