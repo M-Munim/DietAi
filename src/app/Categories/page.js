@@ -3,8 +3,6 @@ import { categories } from '../data'
 import Link from 'next/link';
 
 const page = () => {
-  console.log(categories);
-  console.log("ko");
   return (
     <section className='min-h-screen flex items-center justify-center'>
       <div className="flex items-center justify-center gap-3">

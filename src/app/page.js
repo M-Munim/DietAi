@@ -75,11 +75,11 @@ export default function Home() {
                 dietmate ai</span></h1>
             <h2 className="text-clr6 uppercase text-center lg:text-start text-base font-bold tracking-widest mt-5 mb-14">Risk-Free Performance Pricing</h2>
             {/* m-auto lg:ms-auto */}
-            <button className="mainFilledBtn tracking-widest">
-              <Link href="/Trial">
+            <Link href="/Trial">
+              <button className="mainFilledBtn tracking-widest">
                 start your free trail
-              </Link>
-            </button>
+              </button>
+            </Link>
           </div>
           <div className="right w-1/2">
             <Image

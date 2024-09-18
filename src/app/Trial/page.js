@@ -48,7 +48,9 @@ const page = () => {
                   GET PERSONALIZED DIET PLAN
                 </button>
               </Link>
-              <button className="quizOutlineBtn">DIET PLANS</button>
+              <Link href="/DietPlans">
+                <button className="quizOutlineBtn">DIET PLANS</button>
+              </Link>
             </div>
           </div>
           <div className="right w-full md:w-[42%] flex items-start justify-end md:relative rounded-[51px] p-0 absolute z-10 md:opacity-100 opacity-25">
