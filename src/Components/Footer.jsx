@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row justify-between items-center w-full lg:w-10/12 m-auto px-4">
           <div className="left w-full lg:w-1/2 mt-16 flex items-center lg:items-start justify-center flex-col">
             <p className="text-2xl lg:text-4xl font-semibold leading-7 text-white mb-4 text-center lg:text-left">
-              Start Automating Your Calls For Free Now
+              Subscribe to our newsletter for updates
             </p>
 
             <form>
@@ -19,7 +19,7 @@ const Footer = () => {
               />
             </form>
             <button className="footerOutlineBtn tracking-widest"><Link href="/Trial">
-              start your free trail
+              Subscribe
             </Link></button>
             <p className="text-xs text-white opacity-65 my-4 text-center lg:text-left">
               Or schedule a demo with sales
@@ -28,15 +28,11 @@ const Footer = () => {
             <p className="text-white font-bold my-3 text-center lg:text-left">Site Map</p>
 
             <div className="links text-[10px] lg:text-sm flex flex-wrap gap-2 justify-center lg:justify-start text-[#E5E5E5]">
-              <Link href="">Home</Link>
-              <Link href="">Benefits</Link>
-              <Link href="">Features</Link>
-              <Link href="">Industries</Link>
-              <Link href="">Pricing</Link>
-              <Link href="">Partners</Link>
-              <Link href="">About Us</Link>
-              <Link href="">Blogs</Link>
-              <Link href="">Casestudies</Link>
+              <Link href="/">Home</Link>
+              <Link href="/#about">About</Link>
+              <Link href="/#pricing">Pricing</Link>
+              <Link href="/#reviews">Reviews</Link>
+              <Link href="#">Blog</Link>
             </div>
           </div>
           <Image

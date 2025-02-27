@@ -2,13 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
-
 import jsPDF from "jspdf";
 import { quiz2 } from "../data";
 
 const Questionnaire = () => {
-
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [isCurrentQuestionAnswered, setIsCurrentQuestionAnswered] =
@@ -37,15 +34,20 @@ const Questionnaire = () => {
     setNotification(""); // Clear the notification when the user changes the input
   }, [answers, currentQuestionIndex]);
 
-  useEffect(() => {
-    // Clear the radio selection when the current question changes
-    const inputs = document.querySelectorAll('input[type="radio"]');
-    inputs.forEach((input) => {
-      input.checked = false;
-    });
-  }, [currentQuestionIndex]);
+  // useEffect(() => {
+  //   // Clear the radio selection when the current question changes
+  //   const inputs = document.querySelectorAll('input[type="radio"]');
+  //   inputs.forEach((input) => {
+  //     input.checked = false;
+  //   });
+  // }, [currentQuestionIndex]);
 
   const handleNextQuestion = () => {
+    if (currentQuestionIndex % 5 === 0 && currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1); // Skip the image and move to the next question
+      return;
+    }
+
     if (isCurrentQuestionAnswered) {
       if (currentQuestionIndex < quiz2.questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -53,6 +55,16 @@ const Questionnaire = () => {
     } else {
       setNotification("Please answer the question first.");
     }
+  };
+
+  const motivationalImages = [
+    "https://media.istockphoto.com/id/1681619429/photo/silhouette-of-positive-man-celebrating-on-mountain-top-with-arms-raised-up-silhouette-of-man.jpg?s=612x612&w=0&k=20&c=qPt67d0B535UZrtk7kP3N_T7uZ-Nl_DdxB-xZIIhLRw=",
+    "https://media.istockphoto.com/id/1398562021/photo/silhouette-man-jumping-over-the-cliffs-with-i-can-do-it-word-in-sunlight-never-give-up-good.jpg?b=1&s=612x612&w=0&k=20&c=NfAsWdpo2sfEUf7roeQBFPryfVqtnbI1jKa2YcghC9Q=",
+    "https://media.istockphoto.com/id/1071104734/photo/woman-silhouette-at-sunset-on-hill.jpg?s=612x612&w=0&k=20&c=3PrCHcltS4TtxUXHxT9rLXrG154Lpf70BNDQfkysRnQ=",
+  ];
+
+  const getMotivationalImage = () => {
+    return motivationalImages[Math.floor(currentQuestionIndex / 5) % motivationalImages.length];
   };
 
   const handlePreviousQuestion = () => {
@@ -90,6 +102,7 @@ const Questionnaire = () => {
 
     fetchDietPlan();
   }, [isLastQuestion, answers]);
+
   const convertToHTML = (text) => {
     text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
     text = text.replace(/\*(.*?)\*/g, "<li>$1</li>");
@@ -171,42 +184,75 @@ const Questionnaire = () => {
             </p>
           </div>
 
-          <div className="w-11/12 md:w-8/12 m-auto h-2/3 items-start justify-center flex flex-col">
-            <div className="w-full">
-              <p className="font-bold text-lg md:text-xl mb-2 leading-6">
-                Q: {currentQuestion.id} {currentQuestion.question}
+          {/* Show Motivational Image After Every 5 Questions */}
+          {currentQuestionIndex > 0 && currentQuestionIndex % 5 === 0 ? (
+            <div className="w-full flex flex-col items-center justify-center my-6">
+              <img
+                src={getMotivationalImage()}
+                alt="Stay Motivated!"
+                className="w-2/3 md:w-1/3 rounded-lg shadow-lg"
+              />
+              <p className="text-center font-semibold text-lg mt-3">
+                Keep Going! Your health matters! 💪
               </p>
-              {currentQuestion.type === "text" ? (
-                <input
-                  type="text"
-                  name={`question-${currentQuestion.id}`}
-                  onChange={handleInputChange}
-                  className="w-10/12 ml-10 h-10 outline-none border-none shadow-lg p-3 rounded-md"
-                  placeholder={currentQuestion.placeholder}
-                  required
-                />
-              ) : (
-                currentQuestion.options.map((option, index) => (
-                  <div key={index} className="ml-3">
-                    <input
-                      type="radio"
-                      id={`option-${index}`}
-                      name={`question-${currentQuestion.id}`}
-                      value={option}
-                      onChange={handleInputChange}
-                      className="mr-1"
-                    />
-                    <label htmlFor={`option-${index}`}>{option}</label>
-                  </div>
-                ))
+            </div>
+          ) : (
+            <div className="w-11/12 md:w-8/12 m-auto h-2/3 items-start justify-center flex flex-col">
+              <div className="w-full">
+                <p className="font-bold text-lg md:text-xl mb-2 leading-6">
+                  Q: {currentQuestion.id} {currentQuestion.question}
+                </p>
+                {currentQuestion.type === "text" ? (
+                  // <input
+                  //   type="text"
+                  //   name={`question-${currentQuestion.id}`}
+                  //   onChange={handleInputChange}
+                  //   className="w-10/12 ml-10 h-10 outline-none border-none shadow-lg p-3 rounded-md"
+                  //   placeholder={currentQuestion.placeholder}
+                  //   required
+                  // />
+                  <input
+                    type="text"
+                    name={`question-${currentQuestion.id}`}
+                    value={answers[currentQuestion.question] || ""}  // Ensure value is retained
+                    onChange={handleInputChange}
+                    className="w-10/12 ml-10 h-10 outline-none border-none shadow-lg p-3 rounded-md"
+                    placeholder={currentQuestion.placeholder}
+                    required
+                  />
+                ) : (
+                  currentQuestion.options.map((option, index) => (
+                    <div key={index} className="ml-3">
+                      {/* <input
+                        type="radio"
+                        id={`option-${index}`}
+                        name={`question-${currentQuestion.id}`}
+                        value={option}
+                        onChange={handleInputChange}
+                        className="mr-1"
+                      /> */}
+                      <input
+                        type="radio"
+                        id={`option-${index}`}
+                        name={`question-${currentQuestion.id}`}
+                        value={option}
+                        checked={answers[currentQuestion.question] === option}  // Retain selection
+                        onChange={handleInputChange}
+                        className="mr-1"
+                      />
+                      <label htmlFor={`option-${index}`}>{option}</label>
+                    </div>
+                  ))
+                )}
+              </div>
+              {notification && (
+                <p className="text-red-500 text-center mt-2 w-full text-sm">
+                  {notification}
+                </p>
               )}
             </div>
-            {notification && (
-              <p className="text-red-500 text-center mt-2 w-full text-sm">
-                {notification}
-              </p>
-            )}
-          </div>
+          )}
+
           <div className="flex justify-center items-center gap-3 mt-4">
             {currentQuestionIndex > 0 && (
               <button

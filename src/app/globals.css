@@ -8,6 +8,10 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 .navOutlineBtn {
   width: 149px;
   height: 40px;

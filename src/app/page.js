@@ -93,8 +93,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Two */}
-      <section className="w-10/12 m-auto my-32 relative z-20 py-10">
+      {/* About */}
+      <section className="w-10/12 m-auto my-32 relative z-20 pb-10 pt-28" id="about">
         <div className="w-96 h-96 lg:w-[689px] lg:h-[670px]   md:w-[489px] md:h-[470px] bg-clr5 rounded-full blur-3xl absolute top-80 -left-10 z-10"></div>
         <div className="w-11/12 m-auto relative z-30">
           <div className="top w-11/12 lg:w-10/12 m-auto text-center mb-5">
@@ -165,62 +165,99 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Reviews */}
-        <div className="mt-44 w-full md:w-10/12 lg:w-8/12 m-auto relative z-30">
-          <Swiper
-            cssMode={true}
-            pagination={true}
-            mousewheel={true}
-            keyboard={true}
-            modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-            className="mySwiper"
-          >
-            <SwiperSlide>
-              <div className="flex items-center justify-center flex-col gap-10">
+      {/* Pricing */}
+      <section className="w-10/12 m-auto my-32 relative pt-28 pb-10" id="pricing">
+        <div className="relative z-30">
+          <div className="top text-center mb-12">
+            <p className="text-clr5 font-bold text-base uppercase tracking-widest mb-8 leading-7">what we’re<br />
+              <span className="text-clr2 font-black text-3xl lg:text-[40px] uppercase mt-0 tracking-normal">Seeing, Saying, and Thinking.</span>
+            </p>
+          </div>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 flex-wrap">
+            {cardData.map((data) => (
+              <div className="w-[375px] h-[500px] bg-bg1 rounded-lg flex items-center justify-start flex-col py-5" key={data.id}>
                 <Image
-                  src="/panda.svg"
-                  alt="service"
-                  width={130}
-                  height={130}
+                  src={data.image}
+                  alt="Rectangle"
+                  width={345}
+                  height={200}
+                  className="mb-4"
                 />
 
-                <p className="mb-16 w-11/12 lg:w-8/12 m-auto text-center">&quot;Automation has obvious proven ROI, and TechBot has brought it to the almighty phone channel.&quot;</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex items-center justify-center flex-col gap-10">
-                <Image
-                  src="/panda.svg"
-                  alt="service"
-                  width={130}
-                  height={130}
-                />
+                <p className="w-[345px] text-xl font-extrabold text-white leading-6">{data.title}</p>
 
-                <p className="mb-16 w-11/12 lg:w-8/12 m-auto text-center">&quot;Automation has obvious proven ROI, and TechBot has brought it to the almighty phone channel.&quot;</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex items-center justify-center flex-col gap-10">
-                <Image
-                  src="/panda.svg"
-                  alt="service"
-                  width={130}
-                  height={130}
-                />
+                <p className="w-[345px] text-xs text-white opacity-70 my-3">{data.date}</p>
 
-                <p className="mb-16 w-11/12 lg:w-8/12 m-auto text-center">&quot;Automation has obvious proven ROI, and TechBot has brought it to the almighty phone channel.&quot;</p>
-              </div>
-            </SwiperSlide>
-          </Swiper>
+                <p className="w-[345px] text-white leading-4 mb-20">{data.body}</p>
 
-          <button className="swipperOutlineBtn block m-auto mt-14">
-            <Link href="">
-              read our case studies
-            </Link>
-          </button>
+                <button className="cardFilledBtn">
+                  <Link href="">
+                    read more...
+                  </Link>
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* Reviews */}
+      <div className="mt-44 w-full md:w-10/12 lg:w-8/12 m-auto relative z-30 pt-28" id="reviews">
+        <Swiper
+          cssMode={true}
+          pagination={true}
+          mousewheel={true}
+          keyboard={true}
+          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <div className="flex items-center justify-center flex-col gap-10">
+              <Image
+                src="/panda.svg"
+                alt="service"
+                width={130}
+                height={130}
+              />
+
+              <p className="mb-16 w-11/12 lg:w-8/12 m-auto text-center">&quot;Automation has obvious proven ROI, and TechBot has brought it to the almighty phone channel.&quot;</p>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="flex items-center justify-center flex-col gap-10">
+              <Image
+                src="/panda.svg"
+                alt="service"
+                width={130}
+                height={130}
+              />
+
+              <p className="mb-16 w-11/12 lg:w-8/12 m-auto text-center">&quot;Automation has obvious proven ROI, and TechBot has brought it to the almighty phone channel.&quot;</p>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="flex items-center justify-center flex-col gap-10">
+              <Image
+                src="/panda.svg"
+                alt="service"
+                width={130}
+                height={130}
+              />
+
+              <p className="mb-16 w-11/12 lg:w-8/12 m-auto text-center">&quot;Automation has obvious proven ROI, and TechBot has brought it to the almighty phone channel.&quot;</p>
+            </div>
+          </SwiperSlide>
+        </Swiper>
+
+        <button className="swipperOutlineBtn block m-auto mt-14">
+          <Link href="">
+            read our case studies
+          </Link>
+        </button>
+      </div>
 
       {/* Three */}
       <section className="w-11/12 lg:w-12/12 m-auto my-32 relative py-10">
@@ -356,43 +393,6 @@ export default function Home() {
                 className="absolute"
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Five */}
-      <section className="w-10/12 m-auto my-32 relative py-10">
-        <div className="relative z-30">
-          <div className="top text-center mb-12">
-            <p className="text-clr5 font-bold text-base uppercase tracking-widest mb-8 leading-7">what we’re<br />
-              <span className="text-clr2 font-black text-3xl lg:text-[40px] uppercase mt-0 tracking-normal">Seeing, Saying, and Thinking.</span>
-            </p>
-          </div>
-
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 flex-wrap">
-            {cardData.map((data) => (
-              <div className="w-[375px] h-[500px] bg-bg1 rounded-lg flex items-center justify-start flex-col py-5" key={data.id}>
-                <Image
-                  src={data.image}
-                  alt="Rectangle"
-                  width={345}
-                  height={200}
-                  className="mb-4"
-                />
-
-                <p className="w-[345px] text-xl font-extrabold text-white leading-6">{data.title}</p>
-
-                <p className="w-[345px] text-xs text-white opacity-70 my-3">{data.date}</p>
-
-                <p className="w-[345px] text-white leading-4 mb-20">{data.body}</p>
-
-                <button className="cardFilledBtn">
-                  <Link href="">
-                    read more...
-                  </Link>
-                </button>
-              </div>
-            ))}
           </div>
         </div>
       </section>

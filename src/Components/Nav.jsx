@@ -18,8 +18,10 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from "next/navigation";
 
 const Nav = () => {
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
 
@@ -43,6 +45,9 @@ const Nav = () => {
     };
   }, []);
 
+  const pathname = usePathname();
+  const showHomeLink = pathname === "/Trial" || pathname === "/Categories" || pathname === "/Weightloss" || pathname === "/Diabetes" || pathname === "/Fertility";
+
   return (
     <section
       className={`w-full fixed top-0 z-50 transition-all duration-300 ease-in-out ${scrolling ? 'bg-white bg-opacity-80 backdrop-blur-md shadow-md' : 'bg-transparent'
@@ -51,19 +56,24 @@ const Nav = () => {
       <div className="w-10/12 mx-auto flex items-center justify-between h-24">
         <div className="w-4/12">
           <Link href='/'>
-            <Image src="/Logo.svg" alt="Logo" width={155} height={38} className='inline'/>
+            <Image src="/Logo.svg" alt="Logo" width={155} height={38} className='inline' />
           </Link>
         </div>
 
         <div className="hidden lg:flex flex-grow justify-between w-8/12">
           <div className="links text-clr1 flex justify-center items-center gap-9">
-            <Link href="#">Product</Link>
-            <Link href="#">Pricing</Link>
-            <Link href="#">Partners</Link>
-            <Link href="#">Company</Link>
+            <Link href="/">Home</Link>
+            {!showHomeLink && (
+              <>
+                <Link href="#about">About</Link>
+                <Link href="#pricing">Pricing</Link>
+                <Link href="#reviews">Reviews</Link>
+                <Link href="#">Blog</Link>
+              </>
+            )}
           </div>
           <div className="buttons flex items-center gap-2 ml-4">
-            <button type="button" className="navOutlineBtn">Get Demo</button>
+            <button type="button" className="navOutlineBtn">Sign Up</button>
             <button type="button" className="navFilledBtn">Login</button>
           </div>
         </div>
@@ -83,10 +93,11 @@ const Nav = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed top-20 right-5 bg-white shadow-md w-5/12 md:w-3/12 z-50">
           <div className="flex flex-col items-center py-4">
-            <Link href="#" className="my-2">Product</Link>
-            <Link href="#" className="my-2">Pricing</Link>
-            <Link href="#" className="my-2">Partners</Link>
-            <Link href="#" className="my-2">Company</Link>
+            <Link href="#">Home</Link>
+            <Link href="#about">About</Link>
+            <Link href="#">Pricing</Link>
+            <Link href="#">Reviews</Link>
+            <Link href="#">Blog</Link>
             <button type="button" className="navOutlineBtn mt-4">Get Demo</button>
             <button type="button" className="navFilledBtn mt-2">Login</button>
           </div>
