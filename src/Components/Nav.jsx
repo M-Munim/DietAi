@@ -73,8 +73,14 @@ const Nav = () => {
             )}
           </div>
           <div className="buttons flex items-center gap-2 ml-4">
-            <button type="button" className="navOutlineBtn">Sign Up</button>
-            <button type="button" className="navFilledBtn">Login</button>
+            <Link href="/SignUp">
+              <button type="button" className="navOutlineBtn">Sign Up</button>
+            </Link>
+            <Link href="/SignIn">
+              <button type="button" className="navFilledBtn">
+                Login
+              </button>
+            </Link>
           </div>
         </div>
 

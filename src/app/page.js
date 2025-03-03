@@ -1,5 +1,6 @@
 'use client';
-
+import { getDatabase, ref, set } from "firebase/database";
+import { app } from '../services/firebase'
 import Image from "next/image";
 import Link from "next/link";
 // Import Swiper React components
@@ -13,8 +14,11 @@ import 'swiper/css/pagination';
 // import required modules
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
-export default function Home() {
+const db = getDatabase(app);
 
+
+
+export default function Home() {
   const data = [
     {
       id: 1,
@@ -63,6 +67,14 @@ export default function Home() {
       body: "The holidays came in hot this year, and CS teams ...",
     },
   ]
+
+  const putData = () => {
+    set(ref(db, 'users/munim'), {
+      id: 1,
+      name: "shahzad",
+      email: "OYh7y@example.com"
+    })
+  }
   return (
     <main className="relative overflow-hidden">
       <div className="w-96 h-96 lg:w-[689px] lg:h-[670px] md:w-[489px] md:h-[470px] bg-clr5 rounded-full blur-3xl absolute -top-20 -right-10 z-10"></div>
@@ -79,6 +91,8 @@ export default function Home() {
               <button className="mainFilledBtn tracking-widest">
                 start your free trail
               </button>
+
+              <button onClick={putData}>Click</button>
             </Link>
           </div>
           <div className="right w-1/2">
