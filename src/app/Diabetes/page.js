@@ -12,6 +12,7 @@ const Questionnaire = () => {
     useState(false);
   const [notification, setNotification] = useState("");
   const [result, setResult] = useState("");
+  const [progress, setProgress] = useState(0);
   const genAI = new GoogleGenerativeAI(
     "AIzaSyAbQtAVdQkGHZWkBt8eEhMsjaKzti4GouA"
   );
@@ -51,6 +52,7 @@ const Questionnaire = () => {
     if (isCurrentQuestionAnswered) {
       if (currentQuestionIndex < quiz2.questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setProgress(((currentQuestionIndex + 1) / quiz2.questions.length) * 100);
       }
     } else {
       setNotification("Please answer the question first.");
@@ -70,6 +72,7 @@ const Questionnaire = () => {
   const handlePreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
+      setProgress(((currentQuestionIndex - 1) / quiz2.questions.length) * 100);
     }
   };
 
@@ -176,7 +179,16 @@ const Questionnaire = () => {
   return (
     <div className="w-full flex items-center justify-center my-40">
       {!isLastQuestion ? (
+
         <div className="w-11/12 md:w-8/12 h-[436px] rounded-[51px] shadow-2xl shadow-green-400">
+          <div className="w-full bg-gray-300 h-2 rounded-full my-4">
+            <div
+              className="bg-green-500 h-2 rounded-full transition-all duration-300"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+
+
           <div className="mt-6 pl-6 w-11/12 md:w-9/12 items-start justify-center flex flex-col">
             <h1 className="font-bold text-2xl">Generate diet plan for Diabetes</h1>
             <p className="font-light text-sm text-gray-600">
